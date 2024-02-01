@@ -7,6 +7,9 @@ import ru.practicum.shareit.item.dto.ItemDto;
 
 import java.util.List;
 
+/**
+ * Класс-сервис для управления сущностями товара
+ */
 public interface ItemService {
     ItemDto create(Long userId, ItemShortDto item);
 

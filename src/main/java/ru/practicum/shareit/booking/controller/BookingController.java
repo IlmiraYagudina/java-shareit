@@ -10,6 +10,9 @@ import ru.practicum.shareit.enums.State;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Класс-контроллер для сущности заказа
+ */
 @RestController
 @RequestMapping("/bookings")
 @RequiredArgsConstructor

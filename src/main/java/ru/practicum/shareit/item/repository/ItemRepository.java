@@ -5,6 +5,9 @@ import ru.practicum.shareit.item.model.Item;
 
 import java.util.List;
 
+/**
+ * Класс-хранилище данных о товарах
+ */
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
     List<Item> findItemByOwnerId(Long id);

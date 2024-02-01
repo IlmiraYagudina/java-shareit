@@ -10,6 +10,9 @@ import ru.practicum.shareit.user.model.User;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * Класс-модель для создания объекта заказа
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

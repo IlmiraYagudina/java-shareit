@@ -8,6 +8,9 @@ import ru.practicum.shareit.comment.dto.CommentDto;
 
 import java.util.List;
 
+/**
+ * Класс-модель DTO для создания объекта товара
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

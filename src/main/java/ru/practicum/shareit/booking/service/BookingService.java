@@ -6,6 +6,9 @@ import ru.practicum.shareit.enums.State;
 
 import java.util.List;
 
+/**
+ * Класс-сервис для управления сущностями заказа
+ */
 public interface BookingService {
     BookingDto create(Long userId, BookingShortDto booking);
 

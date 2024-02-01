@@ -14,6 +14,9 @@ import ru.practicum.shareit.util.Update;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Класс-контроллер для сущности товара
+ */
 @RestController
 @RequestMapping("/items")
 @RequiredArgsConstructor

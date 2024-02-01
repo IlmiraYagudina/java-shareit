@@ -7,6 +7,9 @@ import ru.practicum.shareit.enums.Status;
 
 import java.time.LocalDateTime;
 
+/**
+ * Класс-модель DTO для создания объекта заказа
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
