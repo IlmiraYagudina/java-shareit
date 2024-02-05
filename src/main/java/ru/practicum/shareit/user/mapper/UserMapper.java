@@ -1,11 +1,13 @@
 package ru.practicum.shareit.user.mapper;
 
+import org.springframework.stereotype.Component;
 import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.model.User;
 
 /**
  * Класс-маппер для приведения DTO сущностей в POJO объекты и наоборот
  */
+@Component
 public class UserMapper {
 
     /**

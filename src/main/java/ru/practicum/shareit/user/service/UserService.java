@@ -1,6 +1,6 @@
 package ru.practicum.shareit.user.service;
 
-import ru.practicum.shareit.user.model.User;
+import ru.practicum.shareit.user.dto.UserDto;
 
 import java.util.List;
 
@@ -13,31 +13,31 @@ public interface UserService {
      * @param user данные пользователя
      * @return возвращает созданного пользователя
      */
-    User create(User user);
+    UserDto create(UserDto user);
+
     /**
      * Метод обновляет данные пользователя в хранилище
      * @param id идентификатор пользователя
      * @return возвращает новые данные о пользователе
      */
+    UserDto update(Long id, UserDto user);
 
-    User update(Long id, User user);
     /**
      * Метод получения пользователя по идентификатору
      * @param id идентификатор пользователя
      * @return возвращает полученного пользователя
      */
+    UserDto getById(Long id);
 
-    User getById(Long id);
     /**
      * Метод удаления пользователя по идентификатору
      * @param id идентификатор пользователя
      */
-
     void deleteById(Long id);
+
     /**
      * Метод получения списка пользователей
      * @return возвращает список пользователей из хранилища
      */
-
-    List<User> getUsers();
+    List<UserDto> getUsers();
 }
