@@ -7,11 +7,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.dto.BookingForItemDto;
 import ru.practicum.shareit.booking.dto.BookingShortDto;
 import ru.practicum.shareit.booking.mapper.BookingMapper;
 import ru.practicum.shareit.booking.model.Booking;
-import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.repository.BookingRepository;
 import ru.practicum.shareit.enums.State;
 import ru.practicum.shareit.enums.Status;
@@ -42,15 +42,15 @@ public class BookingServiceImpl implements BookingService {
     @Transactional
     @Override
     public BookingDto create(Long userId, BookingShortDto booking) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ObjectNotFoundException("Пользователь не найден"));
         Item item = itemRepository.findById(booking.getItemId()).orElseThrow(
                 () -> new ObjectNotFoundException("Товара не существует"));
         if (item.getAvailable().equals(false)) {
             throw new AccessException("Товар недоступен для бронирования");
         }
-        User user = userRepository.findById(userId).orElseThrow(
-                () -> new ObjectNotFoundException("Пользователь не найден"));
         if (item.getOwner().getId().equals(userId)) {
-            throw new ObjectNotFoundException("Не найдено");
+            throw new ObjectNotFoundException("Ошибка доступа");
         }
         if (booking.getStart().equals(booking.getEnd())) {
             throw new ValidationException("Время начала не может быть равно времени окончания заявки");
@@ -68,7 +68,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Transactional
     @Override
-    public BookingDto updateStatus(Long bookingId, Long userId, Boolean approved) {
+    public BookingDto updateStatus(Long userId, Long bookingId, Boolean approved) {
         Booking thisBooking = bookingRepository.findById(bookingId).orElseThrow(
                 () -> new ObjectNotFoundException("Бронирование не найдено"));
         if (!userId.equals(thisBooking.getItem().getOwner().getId())) {

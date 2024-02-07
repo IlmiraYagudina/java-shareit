@@ -37,6 +37,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 import static org.springframework.data.domain.Sort.Direction.ASC;
 import static org.springframework.data.domain.Sort.Direction.DESC;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -126,6 +127,7 @@ public class ItemServiceImpl implements ItemService {
         }
         itemRepository.deleteById(id);
     }
+
     @Override
     public List<ItemDto> getByUserId(Long userId, Integer offset, Integer limit) {
         Sort sort = Sort.by(ASC, "id");
@@ -153,7 +155,6 @@ public class ItemServiceImpl implements ItemService {
         }
         return itemsList;
     }
-
 
     @Override
     public List<ItemDto> search(String text, Integer offset, Integer limit) {
