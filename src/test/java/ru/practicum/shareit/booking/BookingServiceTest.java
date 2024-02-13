@@ -43,8 +43,12 @@ public class BookingServiceTest {
     private UserRepository userRepository;
     @Mock
     private ItemRepository itemRepository;
-    private final BookingMapper mapper = new BookingMapper();
+    private final BookingMapper mapper;
     private BookingServiceImpl bookingService;
+
+    public BookingServiceTest(BookingMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @BeforeEach
     void setUp() {
@@ -83,7 +87,7 @@ public class BookingServiceTest {
 
         assertThrows(ObjectNotFoundException.class,
                 () -> bookingService.create(999L,
-                        new BookingShortDto(booking.getStart(), booking.getEnd(), booking.getItem().getId())));
+                        new BookingShortDto(booking.getStart(), booking.getEnd(), booking.getItem())));
     }
 
     @Test

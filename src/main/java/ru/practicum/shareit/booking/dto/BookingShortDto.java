@@ -24,6 +24,6 @@ public class BookingShortDto {
     @NotNull
     private Long itemId;
 
-    public BookingShortDto(Long id, LocalDateTime start, LocalDateTime end, Item item) {
+    public BookingShortDto(LocalDateTime start, LocalDateTime end, Item item) {
     }
 }
