@@ -39,4 +39,5 @@ public class Booking {
         this.start = start;
         this.end = end;
     }
+
 }
