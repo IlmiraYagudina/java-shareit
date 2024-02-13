@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -167,7 +168,7 @@ public class BookingServiceTest {
 
     @Test
     void getById_shouldReturnBooking() {
-        when(bookingRepository.findById(anyLong())).thenReturn(Optional.of(booking));
+        when(bookingRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(booking));
 
         BookingDto returnedBooking = bookingService.getById(booking.getId(), ilya.getId());
 
@@ -191,9 +192,9 @@ public class BookingServiceTest {
     @Test
     void getBookingsByOwner_shouldReturnBookingsIfStateIsCurrent() {
         Page<Booking> pages = new PageImpl<>(List.of(booking));
-        when(bookingRepository.findAllByItemOwnerAndStartBeforeAndEndAfter(any(), any(), any(), any()))
+        when(bookingRepository.findAllByItemOwnerAndStartBeforeAndEndAfter(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(arina));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(arina));
 
         List<BookingDto> bookings = bookingService.getBookingsByOwner(arina.getId(),
                 State.CURRENT, 0, 10);
@@ -209,9 +210,9 @@ public class BookingServiceTest {
                 LocalDateTime.of(2023, 1, 12, 12, 12, 0),
                 flour, ilya, Status.APPROVED);
         Page<Booking> pages = new PageImpl<>(List.of(thisBooking));
-        when(bookingRepository.findAllByItemOwnerAndEndBefore(any(), any(), any()))
+        when(bookingRepository.findAllByItemOwnerAndEndBefore(Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(arina));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(arina));
 
         List<BookingDto> bookings = bookingService.getBookingsByOwner(arina.getId(),
                 State.PAST, 0, 10);
@@ -227,9 +228,9 @@ public class BookingServiceTest {
                 LocalDateTime.of(2024, 1, 12, 12, 12, 0),
                 flour, ilya, Status.APPROVED);
         Page<Booking> pages = new PageImpl<>(List.of(thisBooking));
-        when(bookingRepository.findAllByItemOwnerAndStartAfter(any(), any(), any()))
+        when(bookingRepository.findAllByItemOwnerAndStartAfter(Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(arina));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(arina));
 
         List<BookingDto> bookings = bookingService.getBookingsByOwner(arina.getId(),
                 State.FUTURE, 0, 10);
@@ -240,9 +241,9 @@ public class BookingServiceTest {
     @Test
     void getBookingsByOwner_shouldReturnBookingsIfStateIsWaiting() {
         Page<Booking> pages = new PageImpl<>(List.of(booking));
-        when(bookingRepository.findAllByItemOwnerAndStatusEquals(any(), any(), any()))
+        when(bookingRepository.findAllByItemOwnerAndStatusEquals(Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(arina));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(arina));
 
         List<BookingDto> bookings = bookingService.getBookingsByOwner(arina.getId(),
                 State.WAITING, 0, 10);
@@ -258,9 +259,9 @@ public class BookingServiceTest {
                 LocalDateTime.of(2024, 1, 12, 12, 12, 0),
                 flour, ilya, Status.REJECTED);
         Page<Booking> pages = new PageImpl<>(List.of(thisBooking));
-        when(bookingRepository.findAllByItemOwnerAndStatusEquals(any(), any(), any()))
+        when(bookingRepository.findAllByItemOwnerAndStatusEquals(Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(arina));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(arina));
 
         List<BookingDto> bookings = bookingService.getBookingsByOwner(arina.getId(),
                 State.REJECTED, 0, 10);
@@ -270,7 +271,7 @@ public class BookingServiceTest {
 
     @Test
     void getBookingsByOwner_shouldThrowExceptionIfStateIsUnsupported() {
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(arina));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(arina));
 
         assertThrows(AccessException.class,
                 () -> bookingService.getBookingsByOwner(arina.getId(),
@@ -286,9 +287,9 @@ public class BookingServiceTest {
     @Test
     void getBookingsByUser_shouldReturnBookingIfSizeIsNull() {
         Page<Booking> pages = new PageImpl<>(List.of(booking));
-        when(bookingRepository.findAllByBooker(any(), any()))
+        when(bookingRepository.findAllByBooker(Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(ilya));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(ilya));
 
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.ALL, 0, null);
@@ -299,9 +300,9 @@ public class BookingServiceTest {
     @Test
     void getBookingsByUser_shouldReturnBookingsIfStateIsAll() {
         Page<Booking> pages = new PageImpl<>(List.of(booking));
-        when(bookingRepository.findAllByBooker(any(), any()))
+        when(bookingRepository.findAllByBooker(Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(ilya));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(ilya));
 
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.ALL, 0, 10);
@@ -317,9 +318,9 @@ public class BookingServiceTest {
                 LocalDateTime.of(2024, 1, 12, 12, 12, 0),
                 flour, ilya, Status.APPROVED);
         Page<Booking> pages = new PageImpl<>(List.of(thisBooking));
-        when(bookingRepository.findAllByBookerAndStartBeforeAndEndAfter(any(), any(), any(), any()))
+        when(bookingRepository.findAllByBookerAndStartBeforeAndEndAfter(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(ilya));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(ilya));
 
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.CURRENT, 0, 10);
@@ -335,9 +336,9 @@ public class BookingServiceTest {
                 LocalDateTime.of(2023, 1, 12, 12, 12, 0),
                 flour, ilya, Status.APPROVED);
         Page<Booking> pages = new PageImpl<>(List.of(thisBooking));
-        when(bookingRepository.findAllByBookerAndEndBefore(any(), any(), any()))
+        when(bookingRepository.findAllByBookerAndEndBefore(Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(ilya));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(ilya));
 
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.PAST, 0, 10);
@@ -353,9 +354,9 @@ public class BookingServiceTest {
                 LocalDateTime.of(2024, 1, 12, 12, 12, 0),
                 flour, ilya, Status.APPROVED);
         Page<Booking> pages = new PageImpl<>(List.of(thisBooking));
-        when(bookingRepository.findAllByBookerAndStartAfter(any(), any(), any()))
+        when(bookingRepository.findAllByBookerAndStartAfter(Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(ilya));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(ilya));
 
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.FUTURE, 0, 10);
@@ -366,9 +367,9 @@ public class BookingServiceTest {
     @Test
     void getBookingsByUser_shouldReturnBookingsIfStateIsWaiting() {
         Page<Booking> pages = new PageImpl<>(List.of(booking));
-        when(bookingRepository.findAllByBookerAndStatusEquals(any(), any(), any()))
+        when(bookingRepository.findAllByBookerAndStatusEquals(Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(ilya));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(ilya));
 
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.WAITING, 0, 10);
@@ -384,9 +385,9 @@ public class BookingServiceTest {
                 LocalDateTime.of(2024, 1, 12, 12, 12, 0),
                 flour, ilya, Status.REJECTED);
         Page<Booking> pages = new PageImpl<>(List.of(thisBooking));
-        when(bookingRepository.findAllByBookerAndStatusEquals(any(), any(), any()))
+        when(bookingRepository.findAllByBookerAndStatusEquals(Mockito.any(), Mockito.any(), Mockito.any()))
                 .thenReturn(pages);
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(ilya));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(ilya));
 
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.REJECTED, 0, 10);
@@ -396,7 +397,7 @@ public class BookingServiceTest {
 
     @Test
     void getBookingsByUser_shouldThrowExceptionIfStateIsUnsupported() {
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(ilya));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(ilya));
 
         assertThrows(AccessException.class,
                 () -> bookingService.getBookingsByOwner(ilya.getId(),
