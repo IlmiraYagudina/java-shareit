@@ -60,7 +60,7 @@ public class CommentServiceTest {
         UserDto thisUser = userService.create(maria);
         UserDto thisAndrew = userService.create(andrew);
         ItemDto thisItem = itemService.create(thisUser.getId(), item);
-        BookingShortDto bookingDto = new BookingShortDto(1L,
+        BookingShortDto bookingDto = new BookingShortDto(
                 LocalDateTime.now().plusSeconds(1),
                 LocalDateTime.now().plusSeconds(3),
                 thisItem.getId());

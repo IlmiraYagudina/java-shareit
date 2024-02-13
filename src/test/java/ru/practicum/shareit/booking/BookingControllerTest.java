@@ -42,7 +42,7 @@ public class BookingControllerTest {
             "The coolest ever",
             true,
             null);
-    private final BookingShortDto inputBooking = new BookingShortDto(1L,
+    private final BookingShortDto inputBooking = new BookingShortDto(
             LocalDateTime.of(2024, 10, 10, 10, 10, 0),
             LocalDateTime.of(2024, 12, 10, 10, 10, 0),
             item.getId());

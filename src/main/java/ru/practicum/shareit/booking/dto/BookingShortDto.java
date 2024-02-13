@@ -12,9 +12,7 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class BookingShortDto {
-    private Long id;
     @NotNull(message = "Время создания заявки на бронирование не должно быть пустым")
     @FutureOrPresent(message = "Время начала заявки не должно быть в прошлом")
     private LocalDateTime start;
@@ -24,6 +22,4 @@ public class BookingShortDto {
     @NotNull
     private Long itemId;
 
-    public BookingShortDto(LocalDateTime start, LocalDateTime end, Item item) {
-    }
 }
