@@ -3,8 +3,6 @@ package ru.practicum.shareit.booking.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.shareit.item.model.Item;
-
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
@@ -12,6 +10,7 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class BookingShortDto {
     @NotNull(message = "Время создания заявки на бронирование не должно быть пустым")
     @FutureOrPresent(message = "Время начала заявки не должно быть в прошлом")
