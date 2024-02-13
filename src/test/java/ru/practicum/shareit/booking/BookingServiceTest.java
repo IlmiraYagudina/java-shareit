@@ -1,11 +1,13 @@
 package ru.practicum.shareit.booking;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import ru.practicum.shareit.booking.dto.BookingDto;
@@ -29,11 +31,11 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
+@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class BookingServiceTest {
     @Mock
@@ -69,6 +71,7 @@ public class BookingServiceTest {
             LocalDateTime.of(2023, 12, 12, 12, 12, 0),
             LocalDateTime.of(2024, 1, 12, 12, 12, 0),
             flour, ilya, Status.WAITING);
+
 
     @Test
     void create_shouldThrowExceptionIfUserIdIsIncorrect() {
@@ -171,8 +174,10 @@ public class BookingServiceTest {
 
         BookingDto returnedBooking = bookingService.getById(booking.getId(), ilya.getId());
 
+        assertNotNull(returnedBooking);
         assertThat(returnedBooking.getStart(), equalTo(booking.getStart()));
         assertThat(returnedBooking.getEnd(), equalTo(booking.getEnd()));
+
     }
 
     @Test
@@ -198,6 +203,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByOwner(arina.getId(),
                 State.CURRENT, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -216,6 +222,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByOwner(arina.getId(),
                 State.PAST, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -234,6 +241,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByOwner(arina.getId(),
                 State.FUTURE, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -247,6 +255,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByOwner(arina.getId(),
                 State.WAITING, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -265,6 +274,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByOwner(arina.getId(),
                 State.REJECTED, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -293,6 +303,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.ALL, 0, null);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -306,6 +317,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.ALL, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -324,6 +336,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.CURRENT, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -342,6 +355,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.PAST, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -360,6 +374,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.FUTURE, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -373,6 +388,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.WAITING, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
@@ -391,6 +407,7 @@ public class BookingServiceTest {
         List<BookingDto> bookings = bookingService.getBookingsByUser(ilya.getId(),
                 State.REJECTED, 0, 10);
 
+        assertNotNull(bookings);
         assertFalse(bookings.isEmpty());
     }
 
