@@ -28,14 +28,14 @@ public class UserServiceImpl implements UserService {
             User thisUser = mapper.toUser(user);
             return mapper.toUserDto(repository.save(thisUser));
         } catch (DataIntegrityViolationException exception) {
-            throw new ObjectAlreadyExistsException("Данные о пользователе с id {userId} уже есть в системе");
+            throw new ObjectAlreadyExistsException("Данные о пользователе  {user} уже есть в системе");
         }
     }
 
     @Transactional
     @Override
     public UserDto update(Long id, UserDto user) {
-        User thisUser = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Пользователь не найден"));
+        User thisUser = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Пользователь с id {userId} не найден"));
         if (user.getEmail() != null && !user.getEmail().isBlank()) {
             thisUser.setEmail(user.getEmail());
         }
