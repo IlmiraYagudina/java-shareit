@@ -60,7 +60,7 @@ public class UserRepositoryTest {
 
         final ObjectNotFoundException exception = assertThrows(
                 ObjectNotFoundException.class, () -> userService.getById(999L));
-        assertEquals("Пользователь не найден", exception.getMessage());
+        assertEquals("Пользователь с id {userId} не найден", exception.getMessage());
     }
 
     @Test
@@ -69,6 +69,6 @@ public class UserRepositoryTest {
                 .thenThrow(new DataIntegrityViolationException(""));
         final ObjectAlreadyExistsException exception = assertThrows(
                 ObjectAlreadyExistsException.class, () -> userService.create(user));
-        assertEquals("Данные о пользователе уже есть в системе", exception.getMessage());
+        assertEquals("Данные о пользователе {user} уже есть в системе", exception.getMessage());
     }
 }

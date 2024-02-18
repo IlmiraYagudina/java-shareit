@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
             User thisUser = mapper.toUser(user);
             return mapper.toUserDto(repository.save(thisUser));
         } catch (DataIntegrityViolationException exception) {
-            throw new ObjectAlreadyExistsException("Данные о пользователе  {user} уже есть в системе");
+            throw new ObjectAlreadyExistsException("Данные о пользователе {user} уже есть в системе");
         }
     }
 
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getById(Long id) {
-        User user = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Пользователь не найден"));
+        User user = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Пользователь с id {userId} не найден"));
         return mapper.toUserDto(user);
     }
 
