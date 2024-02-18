@@ -31,7 +31,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public RequestDto create(Long userId, RequestDto request, LocalDateTime created) {
         if (!userRepository.existsById(userId)) {
-            throw new ObjectNotFoundException("Пользователь не найден");
+            throw new ObjectNotFoundException("Пользователь с id {userId} не найден");
         }
         Request thisRequest = mapper.toRequest(request, userId, created);
         return mapper.toRequestDto(requestRepository.save(thisRequest));

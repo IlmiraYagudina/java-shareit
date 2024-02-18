@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
             User thisUser = mapper.toUser(user);
             return mapper.toUserDto(repository.save(thisUser));
         } catch (DataIntegrityViolationException exception) {
-            throw new ObjectAlreadyExistsException("Данные о пользователе уже есть в системе");
+            throw new ObjectAlreadyExistsException("Данные о пользователе с id {userId} уже есть в системе");
         }
     }
 

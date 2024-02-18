@@ -139,7 +139,10 @@ public class ItemServiceImpl implements ItemService {
             pageable = PageRequest.of(pagination.getIndex(), pagination.getPageSize(), sort);
             do {
                 page = itemRepository.findItemByOwnerId(userId, pageable);
-                itemsList.addAll(page.stream().map(mapper::toItemExtendedDto).collect(toList()));
+                itemsList.addAll(page
+                        .stream()
+                        .map(mapper::toItemExtendedDto)
+                        .collect(toList()));
                 pageable = pageable.next();
             } while (page.hasNext());
         } else {
