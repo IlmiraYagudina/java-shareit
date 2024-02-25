@@ -21,7 +21,9 @@ public interface ItemService {
 
     void deleteById(Long userId, Long id);
 
-    List<ItemDto> getByUserId(Long id);
+    List<ItemDto> getByUserId(Long id, Integer offset, Integer limit);
 
-    List<ItemShortDto> search(String text);
+    List<ItemDto> search(String text, Integer offset, Integer limit);
+
+    List<ItemDto> getItemsByRequestId(Long requestId);
 }

@@ -47,13 +47,17 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<ItemDto> getItemsByUserId(@RequestHeader("X-Sharer-User-Id") Long userId) {
-        return itemService.getByUserId(userId);
+    public List<ItemDto> getItemsByUserId(@RequestHeader("X-Sharer-User-Id") Long userId,
+                                          @RequestParam(defaultValue = "0") Integer offset,
+                                          @RequestParam(required = false) Integer limit) {
+        return itemService.getByUserId(userId, offset, limit);
     }
 
     @GetMapping("/search")
-    public List<ItemShortDto> search(@RequestParam String text) {
-        return itemService.search(text);
+    public List<ItemDto> search(@RequestParam String text,
+                                @RequestParam(defaultValue = "0") Integer offset,
+                                @RequestParam(required = false) Integer limit) {
+        return itemService.search(text, offset, limit);
     }
 
     @PostMapping("/{itemId}/comment")

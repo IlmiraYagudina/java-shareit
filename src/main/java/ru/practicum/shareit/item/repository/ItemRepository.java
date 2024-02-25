@@ -1,6 +1,11 @@
 package ru.practicum.shareit.item.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import ru.practicum.shareit.item.model.Item;
 
 import java.util.List;
@@ -10,9 +15,13 @@ import java.util.List;
  */
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-    List<Item> findItemByOwnerId(Long id);
+    List<Item> getItemsByRequestId(Long requestId, Sort sort);
 
-    List<Item> findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCaseAndAvailable(String name,
-                                                                                           String description,
-                                                                                           Boolean available);
+    Page<Item> findItemByOwnerId(Long ownerId, Pageable page);
+
+    @Query(" select i from Item i " +
+            "where lower(i.name) like lower(concat('%', :search, '%')) " +
+            " or lower(i.description) like lower(concat('%', :search, '%')) " +
+            " and i.available = true")
+    Page<Item> getItemsBySearchQuery(@Param("search") String text, Pageable pageable);
 }

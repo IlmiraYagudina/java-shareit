@@ -1,8 +1,10 @@
 package ru.practicum.shareit.user.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.shareit.exception.ObjectAlreadyExistsException;
 import ru.practicum.shareit.exception.ObjectNotFoundException;
 import ru.practicum.shareit.user.mapper.UserMapper;
 import ru.practicum.shareit.user.model.User;
@@ -22,14 +24,18 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserDto create(UserDto user) {
-        User thisUser = mapper.toUser(user);
-        return mapper.toUserDto(repository.save(thisUser));
+        try {
+            User thisUser = mapper.toUser(user);
+            return mapper.toUserDto(repository.save(thisUser));
+        } catch (DataIntegrityViolationException exception) {
+            throw new ObjectAlreadyExistsException("Данные о пользователе {user} уже есть в системе");
+        }
     }
 
     @Transactional
     @Override
     public UserDto update(Long id, UserDto user) {
-        User thisUser = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Пользователь не найден"));
+        User thisUser = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Пользователь с id {userId} не найден"));
         if (user.getEmail() != null && !user.getEmail().isBlank()) {
             thisUser.setEmail(user.getEmail());
         }
@@ -41,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getById(Long id) {
-        User user = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Пользователь не найден"));
+        User user = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Пользователь с id {userId} не найден"));
         return mapper.toUserDto(user);
     }
 
