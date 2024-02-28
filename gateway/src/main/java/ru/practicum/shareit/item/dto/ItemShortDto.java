@@ -17,7 +17,7 @@ public class ItemShortDto {
     private String name;
     @NotNull(message = "Поле описания товара не должно быть пустым", groups = {Create.class})
     private String description;
-    @NotNull(message = " Поле статуса доступности не может быть пустым", groups = {Create.class})
+    @NotNull(message = "Поле статуса доступности не может быть пустым", groups = {Create.class})
     private Boolean available;
     private Long requestId;
 }

@@ -9,9 +9,7 @@ import ru.practicum.shareit.util.Update;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-/**
- * Класс-модель DTO для создания объекта пользователя
- */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.practicum.shareit.util.Create;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class RequestDto {
     private Long id;
-    @NotNull(message = "Описание запроса не должно быть пустым", groups = {Create.class})
+    @NotBlank(message = "Описание запроса не должно быть пустым", groups = {Create.class})
     private String description;
     private LocalDateTime created;
 }
