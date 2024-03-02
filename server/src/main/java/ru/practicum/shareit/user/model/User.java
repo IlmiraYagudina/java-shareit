@@ -6,9 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-/**
- * Класс-модель для создания объекта пользователя
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

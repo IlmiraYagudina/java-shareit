@@ -15,7 +15,8 @@ public class RequestController {
     private final RequestClient requestClient;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestHeader("X-Sharer-User-Id") Long userId,  @Validated(Create.class) @RequestBody RequestDto request) {
+    public ResponseEntity<Object> create(@RequestHeader("X-Sharer-User-Id") Long userId,
+                                         @Validated(Create.class) @RequestBody RequestDto request) {
         return requestClient.create(userId, request);
     }
 

@@ -136,21 +136,14 @@ public class BookingServiceImpl implements BookingService {
             page = PageRequest.of(pagination.getIndex(), pagination.getPageSize(), sort);
             do {
                 bookingList = getPages(state, user, page);
-                list.addAll(bookingList
-                        .stream()
-                        .map(mapper::toBookingDto)
-                        .collect(Collectors.toList())
-                );
+                list.addAll(bookingList.stream().map(mapper::toBookingDto).collect(Collectors.toList()));
                 page = page.next();
             } while (bookingList.hasNext());
         } else {
             for (int i = pagination.getIndex(); i < pagination.getTotalPages(); i++) {
                 page = PageRequest.of(i, pagination.getPageSize(), sort);
                 bookingList = getPages(state, user, page);
-                list.addAll(bookingList
-                        .stream()
-                        .map(mapper::toBookingDto)
-                        .collect(Collectors.toList()));
+                list.addAll(bookingList.stream().map(mapper::toBookingDto).collect(Collectors.toList()));
                 if (!bookingList.hasNext()) {
                     break;
                 }

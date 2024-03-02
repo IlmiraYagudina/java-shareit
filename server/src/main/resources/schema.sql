@@ -7,7 +7,7 @@ create table if not exists users
     email varchar not null,
     constraint uq_user_email unique (email),
     constraint pk_user primary key (id)
-    );
+);
 
 create table if not exists requests
 (
@@ -16,7 +16,7 @@ create table if not exists requests
     requester_id bigint references users(id) on delete cascade,
     created timestamp without time zone,
     constraint pk_request primary key (id)
-    );
+);
 
 create table if not exists items
 (
@@ -27,7 +27,7 @@ create table if not exists items
     owner_id bigint references users(id) on delete cascade not null,
     request_id bigint references requests(id) on delete cascade,
     constraint pk_item primary key (id)
-    );
+);
 
 create table if not exists comments
 (
@@ -37,7 +37,7 @@ create table if not exists comments
     author_id bigint references users(id) on delete cascade not null,
     created timestamp without time zone,
     constraint pk_comment primary key (id)
-    );
+);
 
 create table if not exists bookings
 (
@@ -48,7 +48,7 @@ create table if not exists bookings
     booker_id bigint references users(id) on delete cascade not null,
     status varchar,
     constraint pk_booking primary key (id)
-    );
+);
 
 create table if not exists status
 (
@@ -63,4 +63,4 @@ create table if not exists requests
     created timestamp without time zone not null,
     item_id bigint references items(id) on delete cascade not null,
     constraint pk_requests primary key (id)
-    );
+);

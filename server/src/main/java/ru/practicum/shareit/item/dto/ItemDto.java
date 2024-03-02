@@ -10,9 +10,6 @@ import ru.practicum.shareit.user.model.User;
 
 import java.util.List;
 
-/**
- * Класс-модель DTO для создания объекта товара
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

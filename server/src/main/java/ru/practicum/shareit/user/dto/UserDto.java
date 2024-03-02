@@ -4,10 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-/**
- * Класс-модель DTO для создания объекта пользователя
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

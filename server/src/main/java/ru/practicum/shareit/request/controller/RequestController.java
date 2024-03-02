@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.request.dto.RequestDto;
 import ru.practicum.shareit.request.service.RequestService;
 
-import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@RestController
+@RestController("ServerRequestController")
 @RequestMapping("/requests")
 @RequiredArgsConstructor
 public class RequestController {
@@ -17,7 +16,7 @@ public class RequestController {
 
     @PostMapping
     public RequestDto create(@RequestHeader("X-Sharer-User-Id") Long userId,
-                             @Valid @RequestBody RequestDto request) {
+                             @RequestBody RequestDto request) {
         return service.create(userId, request, LocalDateTime.now());
     }
 

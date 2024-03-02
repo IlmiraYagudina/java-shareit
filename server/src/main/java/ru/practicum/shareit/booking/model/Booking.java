@@ -3,16 +3,13 @@ package ru.practicum.shareit.booking.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.enums.Status;
+import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.model.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-/**
- * Класс-модель для создания объекта заказа
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,5 +36,4 @@ public class Booking {
         this.start = start;
         this.end = end;
     }
-
 }

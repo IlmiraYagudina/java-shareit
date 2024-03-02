@@ -31,7 +31,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public RequestDto create(Long userId, RequestDto request, LocalDateTime created) {
         if (!userRepository.existsById(userId)) {
-            throw new ObjectNotFoundException("Пользователь с id {userId} не найден");
+            throw new ObjectNotFoundException("Пользователь не найден");
         }
         Request thisRequest = mapper.toRequest(request, userId, created);
         return mapper.toRequestDto(requestRepository.save(thisRequest));
@@ -40,7 +40,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public List<RequestDto> getRequestsByOwner(Long userId) {
         userRepository.findById(userId)
-                .orElseThrow(() -> new ObjectNotFoundException("Пользователь с id {userId} не найден"));
+                .orElseThrow(() -> new ObjectNotFoundException("Пользователь не найден"));
         return requestRepository.findAllByRequesterId(userId, Sort.by(DESC, "created"))
                 .stream().map(mapper::toRequestDto).collect(Collectors.toList());
     }
@@ -48,7 +48,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public List<RequestDto> getExistingRequests(Long userId, Integer from, Integer size) {
         if (!userRepository.existsById(userId)) {
-            throw new ObjectNotFoundException("Пользователь с id {userId} не найден");
+            throw new ObjectNotFoundException("Пользователь не найден");
         }
         List<RequestDto> requests = new ArrayList<>();
         Pageable pageable;
@@ -75,7 +75,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public RequestDto getRequestById(Long userId, Long requestId) {
         userRepository.findById(userId)
-                .orElseThrow(() -> new ObjectNotFoundException("Пользователь с id {userId} не найден"));
+                .orElseThrow(() -> new ObjectNotFoundException("Пользователь не найден"));
         Request request = requestRepository.findById(requestId)
                 .orElseThrow(() -> new ObjectNotFoundException("Запрос не найден"));
         return mapper.toRequestDto(request);

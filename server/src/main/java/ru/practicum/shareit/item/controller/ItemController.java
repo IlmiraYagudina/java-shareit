@@ -10,9 +10,6 @@ import ru.practicum.shareit.item.service.ItemService;
 
 import java.util.List;
 
-/**
- * Класс-контроллер для сущности товара
- */
 @RestController("ServerItemController")
 @RequestMapping("/items")
 @RequiredArgsConstructor

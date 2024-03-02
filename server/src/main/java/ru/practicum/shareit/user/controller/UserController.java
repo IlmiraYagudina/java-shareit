@@ -7,10 +7,6 @@ import ru.practicum.shareit.user.service.UserService;
 
 import java.util.List;
 
-/**
- * Класс-контроллер для сущности пользователя
- */
-
 @RestController("ServerUserController")
 @RequestMapping(path = "/users")
 @RequiredArgsConstructor

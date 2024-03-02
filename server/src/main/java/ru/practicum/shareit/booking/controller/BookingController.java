@@ -7,12 +7,8 @@ import ru.practicum.shareit.booking.dto.BookingShortDto;
 import ru.practicum.shareit.booking.service.BookingService;
 import ru.practicum.shareit.enums.State;
 
-import javax.validation.Valid;
 import java.util.List;
 
-/**
- * Класс-контроллер для сущности заказа
- */
 @RestController("ServerBookingController")
 @RequestMapping("/bookings")
 @RequiredArgsConstructor

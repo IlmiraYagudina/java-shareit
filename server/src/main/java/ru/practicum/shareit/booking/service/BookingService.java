@@ -1,19 +1,16 @@
 package ru.practicum.shareit.booking.service;
 
-import ru.practicum.shareit.booking.dto.BookingForItemDto;
 import ru.practicum.shareit.booking.dto.BookingDto;
+import ru.practicum.shareit.booking.dto.BookingForItemDto;
 import ru.practicum.shareit.booking.dto.BookingShortDto;
 import ru.practicum.shareit.enums.State;
 
 import java.util.List;
 
-/**
- * Класс-сервис для управления сущностями заказа
- */
 public interface BookingService {
     BookingDto create(Long userId, BookingShortDto booking);
 
-    BookingDto updateStatus(Long userId, Long booking, Boolean approved);
+    BookingDto updateStatus(Long userId, Long bookingId, Boolean approved);
 
     BookingDto getById(Long bookingId, Long userId);
 

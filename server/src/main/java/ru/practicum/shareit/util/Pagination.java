@@ -15,7 +15,7 @@ public class Pagination {
             if ((from < 0) || (size < 0)) {
                 throw new ValidationException("Значение не может быть меньше нуля!");
             }
-            if (size == 0) {
+            if (size.equals(0)) {
                 throw new ValidationException("Значение должно быть больше нуля!");
             }
         }
@@ -23,7 +23,7 @@ public class Pagination {
         index = 1;
         totalPages = 0;
         if (size == null) {
-            if (from == 0) {
+            if (from.equals(0)) {
                 pageSize = 1000;
                 index = 0;
             }
