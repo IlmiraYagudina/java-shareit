@@ -149,19 +149,19 @@
             </plugins>
         </pluginManagement>
     </build>
-    <profiles>
+<!--    <profiles>-->
 
-                <profile>
-                    <id>coverage</id>
-                    <build>
-                        <plugins>
-                            <plugin>
-                                <groupId>org.jacoco</groupId>
-                                <artifactId>jacoco-maven-plugin</artifactId>
-<!--                                <version>0.8.12-SNAPSHOT</version>-->
-                            </plugin>
-                        </plugins>
-                    </build>
-                </profile>
-    </profiles>
+<!--                <profile>-->
+<!--                    <id>coverage</id>-->
+<!--                    <build>-->
+<!--                        <plugins>-->
+<!--                            <plugin>-->
+<!--                                <groupId>org.jacoco</groupId>-->
+<!--                                <artifactId>jacoco-maven-plugin</artifactId>-->
+<!--&lt;!&ndash;                                <version>0.8.12-SNAPSHOT</version>&ndash;&gt;-->
+<!--                            </plugin>-->
+<!--                        </plugins>-->
+<!--                    </build>-->
+<!--                </profile>-->
+<!--    </profiles>-->
 </project>
