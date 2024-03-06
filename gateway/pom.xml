@@ -125,19 +125,4 @@
             </plugins>
         </pluginManagement>
     </build>
-<!--    <profiles>-->
-<!--        -->
-<!--        <profile>-->
-<!--            <id>coverage</id>-->
-<!--            <build>-->
-<!--                <plugins>-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.jacoco</groupId>-->
-<!--                        <artifactId>jacoco-maven-plugin</artifactId>-->
-<!--                        <version>0.0.1-SNAPSHOT</version>-->
-<!--                    </plugin>-->
-<!--                </plugins>-->
-<!--            </build>-->
-<!--        </profile>-->
-<!--    </profiles>-->
 </project>
